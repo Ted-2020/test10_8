@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>跑马灯效果</title>
+	<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+</head>
+<body>
+<div id="app">
+	<p>{{msg}}</p>
+	<input type="button" value="开始" @click="begin" />
+	<input type="button" value="停止" @click="stop" />
+		
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+	el:'#app',
+	data:{
+		msg:"猥琐发育，别浪~",
+		paomadeng:null,
+	},
+	methods:{
+		begin(){
+			if(this.paomadeng != null) return;
+			this.paomadeng = setInterval(()=>{
+			var start = this.msg.substring(0,1);
+			var end = this.msg.substring(1);
+			this.msg = end + start ;
+			},400);
+		},
+		stop(){
+			clearInterval(this.paomadeng);
+			this.paomadeng = null;
+		},
+	}
+});
+</script>
+</body>
+</html>
